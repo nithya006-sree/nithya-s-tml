@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style>
+        button{
+            margin: 5px;
+            width: 32px; 
+            border-radius: 20px;
+        }
+        
+        input{
+            width: 170px;
+            height: 50px;
+            border-radius: 12px;
+        }
+
+        .border{
+            background-color: violet(203, 203, 57);
+            display: inline-block;
+            border-radius: 18px;
+            padding: 10px;
+        }
+
+        h1{
+            margin-left:15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="border">
+    <h1>Calculator</h1>
+    <input type="text" id="result" disabled><br><br>
+    
+    <button onclick="clearEntry()">CE</button>
+    <button onclick="clearAll()">C</button>
+    <button onclick="calculate('%')">%</button>
+    <button onclick="calculate('/')">/</button>
+    <br>
+
+    <button onclick="addToInput('7')">7</button>
+    <button onclick="addToInput('8')">8</button>
+    <button onclick="addToInput('9')">9</button>
+    <button onclick="calculate('+')">+</button>
+    <br>
+
+    <button onclick="addToInput('4')">4</button>
+    <button onclick="addToInput('5')">5</button>
+    <button onclick="addToInput('6')">6</button>
+    <button onclick="calculate('-')">-</button>
+    <br>
+
+    <button onclick="addToInput('1')">1</button>
+    <button onclick="addToInput('2')">2</button>
+    <button onclick="addToInput('3')">3</button>
+    <button onclick="calculate('')"></button>
+    <br>
+
+    <button onclick="toggleSign()">+/-</button>
+    <button onclick="addToInput('0')">0</button>
+    <button onclick="addToInput('.')">.</button>
+    <button onclick="getResult()">=</button>
+    </div>
+
+    <script>
+        let input = '';
+        let currentOperation = null;
+
+        function addToInput(value) {
+            input += value;
+            document.getElementById('result').value = input;
+        }
+
+        function clearAll() {
+            input = '';
+            currentOperation = null;
+            document.getElementById('result').value = '';
+        }
+
+        function clearEntry() {
+            input = input.slice(0, -1);
+            document.getElementById('result').value = input;
+        }
+
+        function calculate(operation) {
+            if (input) {
+                input += ' ' + operation + ' ';
+                document.getElementById('result').value = input;
+            }
+        }
+
+        function toggleSign() {
+            if (input) {
+                input = String(parseFloat(input) * -1);
+                document.getElementById('result').value = input;
+            }
+        }
+
+        function getResult() {
+            try {
+                input = eval(input);
+                document.getElementById('result').value = input;
+                input = String(input);
+            } catch (error) {
+                document.getElementById('result').value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
