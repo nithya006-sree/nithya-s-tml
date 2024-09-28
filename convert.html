@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Case Converter</title>
+  
+</head>
+<body>
+  <h4>UPPERCASE AND LOWERCASE</h4>
+  <input type="text" id="input-field" placeholder="Enter a word...">
+  
+  <button onclick="UPPERCASE()">UPPERCASE</button>
+  <button onclick="LOWERCASE()">LOWERCASE</button>
+  <button onclick="SWAPCASE()">AWAP</button>
+  <div class="output">
+    <p id="uppercase-output"></p>
+    <p id="lowercase-output"></p>
+    <p id="swapcase-output"></p>
+  </div>
+
+  <script>
+    function UPPERCASE() {
+      var inputField = document.getElementById("input-field");
+      var userInput = inputField.value;
+      var uppercaseOutput = userInput.toUpperCase();
+      document.getElementById("uppercase-output").innerHTML = "Uppercase: " + uppercaseOutput;
+    }
+    function LOWERCASE() {
+      var inputField = document.getElementById("input-field");
+      var userInput = inputField.value;
+      var lowercaseOutput = userInput.toLowerCase();
+      document.getElementById("lowercase-output").innerHTML = "Lowercase: " + lowercaseOutput;
+    }
+    function SWAPCASE() {
+      var inputField = document.getElementById("input-field");
+      var userInput = inputField.value;
+      var swapcaseOutput = userInput.replace(/([A-Z])/g, function(match) {
+        return match.toLowerCase();
+      }).replace(/([a-z])/g, function(match) {
+        return match.toUpperCase();
+      });
+      document.getElementById("swapcase-output").innerHTML = "Swapcase: " + swapcaseOutput;
+    }
+  </script>
+</body>
+</html>
